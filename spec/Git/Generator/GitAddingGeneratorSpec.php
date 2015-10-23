@@ -9,6 +9,7 @@ use PhpSpec\Locator\ResourceInterface;
 use PhpSpec\ObjectBehavior;
 use PhpSpec\Util\Filesystem;
 use PhpSpecExtension\Git\Generator\GitAddingGenerator;
+
 use Prophecy\Argument;
 
 /**

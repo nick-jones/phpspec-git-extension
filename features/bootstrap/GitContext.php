@@ -3,6 +3,7 @@
 use Behat\Behat\Context\Context;
 use Behat\Behat\Context\Environment\InitializedContextEnvironment;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+
 use GitElephant\Repository;
 use GitElephant\Status\StatusFile;
 
@@ -29,7 +30,6 @@ class GitContext implements Context
 
         $this->fsContext = $environment->getContext('FilesystemContext');
     }
-
 
     /**
      * @Given I have initialised a git repository
