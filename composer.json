@@ -1,7 +1,7 @@
 {
     "name": "nick-jones/phpspec-git-extension",
 
-    "description": "",
+    "description": "Automatically adds phpspec generated code to git",
 
     "keywords": ["phpspec", "extension", "git"],
 
