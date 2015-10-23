@@ -22,7 +22,7 @@ class Extension implements ExtensionInterface
         $specGenerator = $container->get('code_generator.generators.specification');
 
         $container->setShared('phpspec_extension.git.repository', function () {
-            return Repository::open('.');
+            return Repository::open(realpath('.'));
         });
 
         $container->set('code_generator.generators.class', function (ServiceContainer $c) use ($classGenerator) {
