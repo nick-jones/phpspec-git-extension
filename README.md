@@ -1,0 +1,1 @@
+# PhpSpec Git Extension

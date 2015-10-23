@@ -1,0 +1,8 @@
+default:
+  autoload:
+    '': %paths.base%/vendor/phpspec/phpspec/features/bootstrap
+    'GitContext': %paths.base%/features/bootstrap
+  suites:
+    application:
+      paths:    [ %paths.base%/features ]
+      contexts: [ ApplicationContext, FilesystemContext, GitContext ]

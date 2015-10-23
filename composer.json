@@ -1,0 +1,30 @@
+{
+    "name": "nick-jones/phpspec-git-extension",
+
+    "description": "",
+
+    "keywords": ["phpspec", "extension", "git"],
+
+    "authors": [{
+        "name": "Nicholas Jones"
+    }],
+
+    "license": "MIT",
+
+    "require": {
+        "php": ">=5.4.0",
+        "phpspec/phpspec": "^2.0",
+        "cypresslab/gitelephant": "^1.0"
+    },
+
+    "require-dev": {
+        "behat/behat": "^3.0",
+        "bossa/phpspec2-expect": "^1.0"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "PhpSpecExtension\\Git\\": "lib/Git/"
+        }
+    }
+}
