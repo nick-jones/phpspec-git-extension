@@ -2,8 +2,6 @@
 
 namespace PhpSpecExtension\Git\Generator;
 
-use GitElephant\Repository;
-
 use PhpSpec\CodeGenerator\Generator\GeneratorInterface;
 use PhpSpec\Locator\ResourceInterface;
 use PhpSpec\Util\Filesystem;
@@ -16,7 +14,7 @@ class GitAddingGenerator implements GeneratorInterface
     private $delegate;
 
     /**
-     * @var Repository
+     * @var GitRepository
      */
     private $repository;
 
@@ -27,10 +25,10 @@ class GitAddingGenerator implements GeneratorInterface
 
     /**
      * @param GeneratorInterface $delegate
-     * @param Repository $repository
+     * @param GitRepository $repository
      * @param Filesystem $filesystem
      */
-    public function __construct(GeneratorInterface $delegate, Repository $repository, Filesystem $filesystem)
+    public function __construct(GeneratorInterface $delegate, GitRepository $repository, Filesystem $filesystem)
     {
         $this->delegate = $delegate;
         $this->repository = $repository;
@@ -103,7 +101,7 @@ class GitAddingGenerator implements GeneratorInterface
      */
     private function stageFile($filePath)
     {
-        $this->repository->stage($filePath);
+        $this->repository->stageFile($filePath);
     }
 
     /**

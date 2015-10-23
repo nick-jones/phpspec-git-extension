@@ -2,13 +2,13 @@
 
 namespace spec\PhpSpecExtension\Git\Generator;
 
-use GitElephant\Repository;
-
 use PhpSpec\CodeGenerator\Generator\GeneratorInterface;
 use PhpSpec\Locator\ResourceInterface;
 use PhpSpec\ObjectBehavior;
 use PhpSpec\Util\Filesystem;
+
 use PhpSpecExtension\Git\Generator\GitAddingGenerator;
+use PhpSpecExtension\Git\Generator\GitRepository;
 
 use Prophecy\Argument;
 
@@ -17,7 +17,7 @@ use Prophecy\Argument;
  */
 class GitAddingGeneratorSpec extends ObjectBehavior
 {
-    public function let(GeneratorInterface $delegate, Repository $repository, Filesystem $filesystem)
+    public function let(GeneratorInterface $delegate, GitRepository $repository, Filesystem $filesystem)
     {
         $this->beConstructedWith($delegate, $repository, $filesystem);
     }
@@ -99,10 +99,10 @@ class GitAddingGeneratorSpec extends ObjectBehavior
 
         $this->generate($resource, []);
 
-        $repository->stage($srcFilePath)
+        $repository->stageFile($srcFilePath)
             ->shouldHaveBeenCalled();
 
-        $repository->stage($specFilePath)
+        $repository->stageFile($specFilePath)
             ->shouldNotHaveBeenCalled();
     }
 }

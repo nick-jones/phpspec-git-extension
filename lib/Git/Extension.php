@@ -9,6 +9,7 @@ use PhpSpec\ServiceContainer;
 use PhpSpec\Util\Filesystem;
 
 use PhpSpecExtension\Git\Generator\GitAddingGenerator;
+use PhpSpecExtension\Git\Generator\GitRepository;
 
 class Extension implements ExtensionInterface
 {
@@ -22,7 +23,7 @@ class Extension implements ExtensionInterface
         $specGenerator = $container->get('code_generator.generators.specification');
 
         $container->setShared('phpspec_extension.git.repository', function () {
-            return Repository::open(realpath('.'));
+            return GitRepository::fromCurrentWorkingDirectory();
         });
 
         $container->set('code_generator.generators.class', function (ServiceContainer $c) use ($classGenerator) {
