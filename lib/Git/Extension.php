@@ -2,8 +2,7 @@
 
 namespace PhpSpecExtension\Git;
 
-use GitElephant\Repository;
-
+use PhpSpec\CodeGenerator\Generator\GeneratorInterface;
 use PhpSpec\Extension\ExtensionInterface;
 use PhpSpec\ServiceContainer;
 use PhpSpec\Util\Filesystem;
@@ -18,25 +17,29 @@ class Extension implements ExtensionInterface
      */
     public function load(ServiceContainer $container)
     {
-        // N.B. - this is not ideal, but there appears to be no other way to achieve this currently.
-        $classGenerator = $container->get('code_generator.generators.class');
-        $specGenerator = $container->get('code_generator.generators.specification');
-
         $container->setShared('phpspec_extension.git.repository', function () {
             return GitRepository::fromCurrentWorkingDirectory();
         });
 
-        $container->set('code_generator.generators.class', function (ServiceContainer $c) use ($classGenerator) {
-            return new GitAddingGenerator(
-                $classGenerator,
-                $c->get('phpspec_extension.git.repository'),
-                new Filesystem()
-            );
-        });
+        // N.B. - this is not ideal, but there appears to be no other way to achieve this currently.
+        $classGenerator = $container->get('code_generator.generators.class');
+        $specGenerator = $container->get('code_generator.generators.specification');
+        $interfaceGenerator = $container->get('code_generator.generators.interface');
 
-        $container->set('code_generator.generators.specification', function (ServiceContainer $c) use ($specGenerator) {
+        $this->decorateGenerator($container, 'code_generator.generators.class', $classGenerator);
+        $this->decorateGenerator($container, 'code_generator.generators.specification', $specGenerator);
+        $this->decorateGenerator($container, 'code_generator.generators.interface', $interfaceGenerator);
+    }
+
+    /**
+     * @param ServiceContainer $container
+     * @param GeneratorInterface $generator
+     */
+    private function decorateGenerator(ServiceContainer $container, $key, GeneratorInterface $generator)
+    {
+        $container->set($key, function (ServiceContainer $c) use ($generator) {
             return new GitAddingGenerator(
-                $specGenerator,
+                $generator,
                 $c->get('phpspec_extension.git.repository'),
                 new Filesystem()
             );
