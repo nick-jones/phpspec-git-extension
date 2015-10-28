@@ -5,7 +5,10 @@
 [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.4-8892BF.svg?style=flat-square)](https://php.net/)
 
 This is a quick and simple extension for [phpspec](https://github.com/phpspec/phpspec) that will automatically add
-generated classes and specifications to git.
+generated classes, interfaces, and specifications to git.
+
+This currently decorates the relevant code generation clases to facilitate this. Ultimately it is intended to leverage the changes from
+https://github.com/phpspec/phpspec/pull/723 once released.
 
 ## Installation
 
