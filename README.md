@@ -7,7 +7,7 @@
 This is a quick and simple extension for [phpspec](https://github.com/phpspec/phpspec) that will automatically add
 generated classes, interfaces, and specifications to git.
 
-This currently decorates the relevant code generation clases to facilitate this. Ultimately it is intended to leverage the changes from
+This currently wraps the relevant code generation clases to facilitate this. Ultimately it is intended to leverage the changes from
 https://github.com/phpspec/phpspec/pull/723 once released.
 
 ## Installation
